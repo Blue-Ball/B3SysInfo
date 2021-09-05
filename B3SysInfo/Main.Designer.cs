@@ -91,6 +91,7 @@
             this.tabControl1.Controls.Add(this.tabCertificateInfo);
             this.tabControl1.Controls.Add(this.tabConfiguration);
             this.tabControl1.Controls.Add(this.tabEmail);
+            this.tabControl1.ItemSize = new System.Drawing.Size(120, 21);
             this.tabControl1.Location = new System.Drawing.Point(-1, 1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -165,7 +166,7 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Name";
-            this.columnHeader1.Width = 378;
+            this.columnHeader1.Width = 380;
             // 
             // columnHeader2
             // 
