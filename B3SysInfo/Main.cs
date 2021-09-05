@@ -48,6 +48,11 @@ namespace loading_screen
             ref IntPtr ActivePolicyGuid);
 
         [DllImport("powrprof.dll")]
+        static extern uint PowerSetActiveScheme(
+            IntPtr UserRootPowerKey,
+            IntPtr SchemeGuid);
+
+        [DllImport("powrprof.dll")]
         static extern uint PowerReadACValue(
             IntPtr RootPowerKey,
             ref Guid SchemeGuid,
@@ -56,12 +61,30 @@ namespace loading_screen
             ref int Type,
             ref int Buffer,
             ref uint BufferSize);
+
+        [DllImport("powrprof.dll")]
+        static extern uint PowerWriteACValueIndex(
+            IntPtr RootPowerKey,
+            ref Guid SchemeGuid,
+            ref Guid SubGroupOfPowerSettingsGuid,
+            ref Guid PowerSettingGuid,
+            ref uint AcValueIndex);
+
         private void ShowValue()
         {
             Debug.WriteLine("Selected:{0}", tabControl1.SelectedIndex);
 
             int i;
-            
+
+            var activePolicyGuidPTR = IntPtr.Zero;
+            PowerGetActiveScheme(IntPtr.Zero, ref activePolicyGuidPTR);
+
+            Guid activePolicyGuid = (Guid)Marshal.PtrToStructure(activePolicyGuidPTR, typeof(Guid));
+
+            var type = 0;
+            var value = 0;
+            var valueSize = 4u;
+
             switch (tabControl1.SelectedIndex)
             {
                 case 0:
@@ -226,13 +249,9 @@ namespace loading_screen
                     lstDisplayHardware.Items[11].SubItems[1].Text = String.Format("{0} X {1}", resolution.Width, resolution.Height);
 
                     // Sleep After AC Power Value
-                    var activePolicyGuidPTR = IntPtr.Zero;
-                    PowerGetActiveScheme(IntPtr.Zero, ref activePolicyGuidPTR);
-
-                    Guid activePolicyGuid = (Guid)Marshal.PtrToStructure(activePolicyGuidPTR, typeof(Guid));
-                    var type = 0;
-                    var value = 0;
-                    var valueSize = 4u;
+                    type = 0;
+                    value = 0;
+                    valueSize = 4u;
                     PowerReadACValue(IntPtr.Zero, ref activePolicyGuid,
                         ref GUID_SLEEP_SUBGROUP, ref AFTER_SLEEP,
                         ref type, ref value, ref valueSize);
@@ -280,12 +299,197 @@ namespace loading_screen
 
                     break;
                 case 2:
+                    // Sleep After AC Power Value
+                    PowerReadACValue(IntPtr.Zero, ref activePolicyGuid,
+                        ref GUID_SLEEP_SUBGROUP, ref AFTER_SLEEP,
+                        ref type, ref value, ref valueSize);
+                    textBoxSleepAfter.Text = String.Format("0x{0:X8}", value);
+
+                    // Turn off display after AC Power value
+                    type = 0;
+                    value = 0;
+                    valueSize = 4u;
+                    PowerReadACValue(IntPtr.Zero, ref activePolicyGuid,
+                        ref GUID_DISPLAY_SUBGROUP, ref TURNOFF_AFTER,
+                        ref type, ref value, ref valueSize);
+
+                    textBoxTurnoffAfter.Text = String.Format("0x{0:X8}", value);
+
                     break;
                 case 3:
+                    btnGenerate_Click(null, null);
                     break;
                 default:
                     break;
             }
+        }
+
+        private void btnChangeSleepAfter_Click(object sender, EventArgs e)
+        {
+            var activePolicyGuidPTR = IntPtr.Zero;
+            PowerGetActiveScheme(IntPtr.Zero, ref activePolicyGuidPTR);
+
+            Guid activePolicyGuid = (Guid)Marshal.PtrToStructure(activePolicyGuidPTR, typeof(Guid));
+            uint value = (uint)new System.ComponentModel.UInt32Converter().ConvertFromString(textBoxSleepAfter.Text);
+
+            String strArg = "/setacvalueindex " + activePolicyGuid.ToString() + " " + GUID_SLEEP_SUBGROUP.ToString() + " " + AFTER_SLEEP.ToString() + " " + value.ToString();
+            Process.Start("powercfg", strArg).WaitForExit(); ;
+        }
+
+        private void btnChangeTurnoffAfter_Click(object sender, EventArgs e)
+        {
+            var activePolicyGuidPTR = IntPtr.Zero;
+            PowerGetActiveScheme(IntPtr.Zero, ref activePolicyGuidPTR);
+
+            Guid activePolicyGuid = (Guid)Marshal.PtrToStructure(activePolicyGuidPTR, typeof(Guid));
+
+            PowerSetActiveScheme(IntPtr.Zero, activePolicyGuidPTR);
+            uint value = (uint)new System.ComponentModel.UInt32Converter().ConvertFromString(textBoxTurnoffAfter.Text);
+
+            String strArg = "/setacvalueindex " + activePolicyGuid.ToString() + " " + GUID_DISPLAY_SUBGROUP.ToString() + " " + TURNOFF_AFTER.ToString() + " " + value.ToString();
+            Process.Start("powercfg", strArg).WaitForExit(); ;
+        }
+
+        private void btnCheckPort_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string hostname = textBoxAddress.Text;
+                int portno = (int)new System.ComponentModel.Int32Converter().ConvertFromString(textBoxPort.Text);
+                IPAddress ipa = (IPAddress)Dns.GetHostAddresses(hostname)[0];
+
+                Boolean bFlag = false;
+                using (TcpClient tcpClient = new TcpClient())
+                {
+                    try
+                    {
+                        tcpClient.Connect(ipa, portno);
+                        Console.WriteLine("Port open");
+                        bFlag = true;
+                        tcpClient.Close();
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Port closed");
+                    }
+                }
+                labelPortQueryValue.Text = bFlag.ToString();
+            }
+            catch
+            {
+
+            }
+        }
+
+        int m_nProgramsCount;
+        List<String> m_lstPrograms = new List<string>();
+
+        private void btnGetPrograms_Click(object sender, EventArgs e)
+        {
+            ProcessStartInfo cmdStartInfo = new ProcessStartInfo();
+            cmdStartInfo.FileName = @"cmd";
+            cmdStartInfo.RedirectStandardOutput = true;
+            cmdStartInfo.RedirectStandardError = true;
+            cmdStartInfo.RedirectStandardInput = true;
+            cmdStartInfo.UseShellExecute = false;
+            cmdStartInfo.CreateNoWindow = true;
+
+            Process cmdProcess = new Process();
+            cmdProcess.StartInfo = cmdStartInfo;
+            cmdProcess.ErrorDataReceived += cmd_Error;
+            cmdProcess.OutputDataReceived += cmd_ProgramsReceived;
+            cmdProcess.EnableRaisingEvents = true;
+            cmdProcess.Start();
+            cmdProcess.BeginOutputReadLine();
+            cmdProcess.BeginErrorReadLine();
+
+            cmdProcess.StandardInput.WriteLine("wmic product get name");     //Execute ping bing.com
+            cmdProcess.StandardInput.WriteLine("exit");                  //Execute exit.
+
+            m_nProgramsCount = 0;
+            m_lstPrograms.Clear();
+            listViewPrograms.Items.Clear();
+
+            cmdProcess.WaitForExit();
+
+            m_lstPrograms.RemoveAt(m_lstPrograms.Count() - 1);
+            int i;
+            for (i = 0; i < m_lstPrograms.Count; i++)
+            {
+                ListViewItem item = new ListViewItem();
+                item.Text = m_lstPrograms[i];
+                listViewPrograms.Items.Add(item);
+            }
+        }
+
+        public void cmd_ProgramsReceived(object sender, DataReceivedEventArgs e)
+        {
+            Console.WriteLine("Output from other process");
+            if(e.Data != null)
+            {
+                if (e.Data.Equals("") == false)
+                {
+                    Console.WriteLine(m_nProgramsCount.ToString() + ":" + e.Data);
+                    m_nProgramsCount++;
+                    if(m_nProgramsCount > 4)
+                    {
+                        m_lstPrograms.Add(e.Data);
+                    }
+                }
+            }
+            
+        }
+
+        public void cmd_Error(object sender, DataReceivedEventArgs e)
+        {
+            Console.WriteLine("Error from other process");
+            Console.WriteLine(e.Data);
+        }
+
+        private void btnUninstall_Click(object sender, EventArgs e)
+        {
+            if(listViewPrograms.SelectedItems.Count <= 0)
+            {
+                MessageBox.Show("Please select the row");
+                return;
+            }
+            String strProgram = listViewPrograms.SelectedItems[0].Text;
+            strProgram = strProgram.Trim();
+            MessageBox.Show(strProgram);
+
+            String strArg = "product where name=\"" + strProgram + "\" call uninstall";
+            Process.Start("wmic", strArg).WaitForExit();
+        }
+
+        private void btnGenerate_Click(object sender, EventArgs e)
+        {
+            txtMailBody.Text = "";
+
+            int i, j;
+            ListViewItem item;
+            for(i = 0; i < lstDisplayHardware.Groups.Count; i++)
+            {
+                ListViewGroup grp = lstDisplayHardware.Groups[i];
+                txtMailBody.Text += String.Format("===== {0} =====", grp.Header);
+                for(j = 0; j < grp.Items.Count; j++)
+                {
+                    item = grp.Items[j];
+                    txtMailBody.Text += String.Format("\r\n{0}:{1}", item.Text, item.SubItems[1].Text);
+                }
+                txtMailBody.Text += "\r\n\r\n";
+            }
+        }
+
+        private void btnSend_Click(object sender, EventArgs e)
+        {
+            EmailHelper.SendMessage1(txtMailHost.Text,
+                int.Parse(textBoxPort.Text),
+                txtMailUserName.Text, 
+                txtMailPwd.Text, 
+                txtMailTo.Text, 
+                txtMailUserName.Text,
+                txtMailTitle.Text, 
+                txtMailBody.Text);
         }
     }
 }
