@@ -72,6 +72,10 @@
             System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem(new string[] {
             "2) Turn off display after AC Power Value",
             "13"}, -1);
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem(new string[] {
+            "asdfsdfds",
+            "dsfdsfds"}, -1);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabSystemInfo = new System.Windows.Forms.TabPage();
             this.lstDisplayHardware = new System.Windows.Forms.ListView();
@@ -80,8 +84,12 @@
             this.tabCertificateInfo = new System.Windows.Forms.TabPage();
             this.tabConfiguration = new System.Windows.Forms.TabPage();
             this.tabEmail = new System.Windows.Forms.TabPage();
+            this.listViewCertificate = new System.Windows.Forms.ListView();
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabSystemInfo.SuspendLayout();
+            this.tabCertificateInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -117,6 +125,7 @@
             this.lstDisplayHardware.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
+            this.lstDisplayHardware.FullRowSelect = true;
             this.lstDisplayHardware.GridLines = true;
             listViewGroup1.Header = "System Information";
             listViewGroup1.Name = "ListViewGroupSystemInfo";
@@ -166,16 +175,17 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Name";
-            this.columnHeader1.Width = 380;
+            this.columnHeader1.Width = 381;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Value";
-            this.columnHeader2.Width = 503;
+            this.columnHeader2.Width = 365;
             // 
             // tabCertificateInfo
             // 
             this.tabCertificateInfo.BackColor = System.Drawing.Color.Gainsboro;
+            this.tabCertificateInfo.Controls.Add(this.listViewCertificate);
             this.tabCertificateInfo.Location = new System.Drawing.Point(4, 25);
             this.tabCertificateInfo.Name = "tabCertificateInfo";
             this.tabCertificateInfo.Padding = new System.Windows.Forms.Padding(3);
@@ -201,6 +211,38 @@
             this.tabEmail.TabIndex = 3;
             this.tabEmail.Text = "Email";
             // 
+            // listViewCertificate
+            // 
+            this.listViewCertificate.BackColor = System.Drawing.Color.Gainsboro;
+            this.listViewCertificate.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader3,
+            this.columnHeader4});
+            this.listViewCertificate.FullRowSelect = true;
+            listViewGroup3.Header = "ListViewGroup";
+            listViewGroup3.Name = "listViewGroup1";
+            this.listViewCertificate.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup3});
+            this.listViewCertificate.HideSelection = false;
+            listViewItem15.Group = listViewGroup3;
+            this.listViewCertificate.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem15});
+            this.listViewCertificate.Location = new System.Drawing.Point(0, 0);
+            this.listViewCertificate.Name = "listViewCertificate";
+            this.listViewCertificate.Size = new System.Drawing.Size(758, 461);
+            this.listViewCertificate.TabIndex = 0;
+            this.listViewCertificate.UseCompatibleStateImageBehavior = false;
+            this.listViewCertificate.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Name";
+            this.columnHeader3.Width = 122;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Value";
+            this.columnHeader4.Width = 609;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -216,6 +258,7 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabSystemInfo.ResumeLayout(false);
+            this.tabCertificateInfo.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -229,5 +272,8 @@
         private System.Windows.Forms.ListView lstDisplayHardware;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ListView listViewCertificate;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }

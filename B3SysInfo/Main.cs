@@ -9,6 +9,7 @@ using System.Management;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -250,6 +251,33 @@ namespace loading_screen
 
                     break;
                 case 1:
+                    listViewCertificate.Items.Clear();
+
+                    var store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
+                    store.Open(OpenFlags.ReadOnly);
+
+                    i = 1;
+                    foreach (X509Certificate2 mCert in store.Certificates)
+                    {
+                        ListViewGroup grp;
+                        String strTemp = String.Format("Certificate {0}", i++);
+                        grp = listViewCertificate.Groups.Add(strTemp, strTemp);
+                        ListViewItem item1 = new ListViewItem(grp);
+                        item1.Text = "Issuer";
+                        item1.SubItems.Add(mCert.Issuer);
+                        listViewCertificate.Items.Add(item1);
+
+                        ListViewItem item2 = new ListViewItem(grp);
+                        item2.Text = "Subject";
+                        item2.SubItems.Add(mCert.Subject);
+                        listViewCertificate.Items.Add(item2);
+
+                        ListViewItem item3 = new ListViewItem(grp);
+                        item3.Text = "Expire";
+                        item3.SubItems.Add(mCert.GetExpirationDateString());
+                        listViewCertificate.Items.Add(item3);
+                    }
+
                     break;
                 case 2:
                     break;
