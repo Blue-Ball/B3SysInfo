@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -316,6 +317,103 @@ namespace loading_screen
 
                     textBoxTurnoffAfter.Text = String.Format("0x{0:X8}", value);
 
+                    // Current TimeZone
+                    String strOut = "";
+
+                    ProcessStartInfo cmdStartInfo = new ProcessStartInfo();
+                    cmdStartInfo.FileName = @"cmd";
+                    cmdStartInfo.RedirectStandardOutput = true;
+                    cmdStartInfo.RedirectStandardError = true;
+                    cmdStartInfo.RedirectStandardInput = true;
+                    cmdStartInfo.UseShellExecute = false;
+                    cmdStartInfo.CreateNoWindow = true;
+
+                    Process cmdProcess = new Process();
+                    cmdProcess.StartInfo = cmdStartInfo;
+                    int nLineOut = 0;
+                    cmdProcess.OutputDataReceived += new DataReceivedEventHandler((sender1, e1) =>
+                    {
+                        if (e1.Data != null)
+                        {
+                            if (e1.Data.Equals("") == false)
+                            {
+                                nLineOut++;
+                                if(nLineOut > 3)
+                                {
+                                    strOut += e1.Data;
+                                    strOut += "\r\n";
+                                }
+                            }
+                        }
+                    });
+                    cmdProcess.Start();
+                    cmdProcess.BeginOutputReadLine();
+
+                    String strArg = String.Format("tzutil /g");
+                    cmdProcess.StandardInput.WriteLine(strArg);     //Execute ping bing.com
+                    cmdProcess.StandardInput.WriteLine("exit");                  //Execute exit.
+
+                    cmdProcess.WaitForExit();
+                    cmdProcess.Close();
+
+                    strOut = strOut.Trim();
+                    strOut = strOut.Remove(strOut.LastIndexOf(Environment.NewLine));
+                    lblCurrentTimeZone.Text = strOut;
+
+                    // Current TimeZone
+                    strOut = "";
+
+                    cmdStartInfo = new ProcessStartInfo();
+                    cmdStartInfo.FileName = @"cmd";
+                    cmdStartInfo.RedirectStandardOutput = true;
+                    cmdStartInfo.RedirectStandardError = true;
+                    cmdStartInfo.RedirectStandardInput = true;
+                    cmdStartInfo.UseShellExecute = false;
+                    cmdStartInfo.CreateNoWindow = true;
+
+                    cmdProcess = new Process();
+                    cmdProcess.StartInfo = cmdStartInfo;
+                    nLineOut = 0;
+
+                    List<String> lstTimeZones = new List<string>();
+                    cmdProcess.OutputDataReceived += new DataReceivedEventHandler((sender1, e1) =>
+                    {
+                        if (e1.Data != null)
+                        {
+                            if (e1.Data.Equals("") == false)
+                            {
+                                nLineOut++;
+                                if (nLineOut > 3)
+                                {
+                                    if(nLineOut % 2 == 1)
+                                    {
+                                        lstTimeZones.Add(e1.Data);
+                                    }
+                                    strOut += e1.Data;
+                                    strOut += "\r\n";
+                                }
+                            }
+                        }
+                    });
+                    cmdProcess.Start();
+                    cmdProcess.BeginOutputReadLine();
+
+                    strArg = String.Format("tzutil /l");
+                    cmdProcess.StandardInput.WriteLine(strArg);     //Execute ping bing.com
+                    cmdProcess.StandardInput.WriteLine("exit");                  //Execute exit.
+
+                    cmdProcess.WaitForExit();
+                    cmdProcess.Close();
+
+                    strOut = strOut.Trim();
+                    strOut = strOut.Remove(strOut.LastIndexOf(Environment.NewLine));
+                    cmbTimeZone.Items.Clear();
+                    for(i = 0; i < lstTimeZones.Count; i++)
+                    {
+                        cmbTimeZone.Items.Add(lstTimeZones[i]);
+                    }
+
+
                     break;
                 case 3:
                     btnGenerate_Click(null, null);
@@ -353,33 +451,55 @@ namespace loading_screen
 
         private void btnCheckPort_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string hostname = textBoxAddress.Text;
-                int portno = (int)new System.ComponentModel.Int32Converter().ConvertFromString(textBoxPort.Text);
-                IPAddress ipa = (IPAddress)Dns.GetHostAddresses(hostname)[0];
+            string hostname = textBoxAddress.Text;
+            int portno = int.Parse(textBoxPort.Text);
 
-                Boolean bFlag = false;
-                using (TcpClient tcpClient = new TcpClient())
+            String strOut = "";
+
+            ProcessStartInfo cmdStartInfo = new ProcessStartInfo();
+            cmdStartInfo.FileName = @"cmd";
+            cmdStartInfo.RedirectStandardOutput = true;
+            cmdStartInfo.RedirectStandardError = true;
+            cmdStartInfo.RedirectStandardInput = true;
+            cmdStartInfo.UseShellExecute = false;
+            cmdStartInfo.CreateNoWindow = true;
+
+            Process cmdProcess = new Process();
+            cmdProcess.StartInfo = cmdStartInfo;
+            cmdProcess.OutputDataReceived += new DataReceivedEventHandler((sender1, e1) =>
+            {
+                if (e1.Data != null)
                 {
-                    try
+                    if (e1.Data.Equals("") == false)
                     {
-                        tcpClient.Connect(ipa, portno);
-                        Console.WriteLine("Port open");
-                        bFlag = true;
-                        tcpClient.Close();
-                    }
-                    catch (Exception)
-                    {
-                        Console.WriteLine("Port closed");
+                        Debug.WriteLine(e1.Data);
+                        strOut += e1.Data;
+                        strOut += "\r\n";
                     }
                 }
-                labelPortQueryValue.Text = bFlag.ToString();
-            }
-            catch
-            {
+            });
+            //cmdProcess.EnableRaisingEvents = true;
+            cmdProcess.Start();
+            cmdProcess.BeginOutputReadLine();
+            //cmdProcess.BeginErrorReadLine();
 
+            String strArg = String.Format("C:\\PortQryV2\\PortQry.exe -n {0} -o {1}", hostname, portno);
+            cmdProcess.StandardInput.WriteLine(strArg);     //Execute ping bing.com
+            cmdProcess.StandardInput.WriteLine("exit");                  //Execute exit.
+
+            cmdProcess.WaitForExit();
+            cmdProcess.Close();
+
+            Debug.WriteLine(strOut);
+
+            Boolean bFlag = false;
+            if(strOut.Contains("): LISTENING") == true)
+            {
+                bFlag = true;
             }
+
+
+            labelPortQueryValue.Text = bFlag.ToString();
         }
 
         int m_nProgramsCount;
@@ -412,6 +532,7 @@ namespace loading_screen
             listViewPrograms.Items.Clear();
 
             cmdProcess.WaitForExit();
+            cmdProcess.Close();
 
             m_lstPrograms.RemoveAt(m_lstPrograms.Count() - 1);
             int i;
@@ -505,5 +626,72 @@ namespace loading_screen
                 txtMailBody.Text);
             MessageBox.Show(strResponse);
         }
+
+        private void btnChangeTimeZone_Click(object sender, EventArgs e)
+        {
+            if (cmbTimeZone.SelectedIndex < 0)
+                return;
+            String strArg = "/s \"" + cmbTimeZone.Items[cmbTimeZone.SelectedIndex].ToString() + "\"";
+            Process.Start("tzutil", strArg).WaitForExit();
+            lblCurrentTimeZone.Text = cmbTimeZone.Items[cmbTimeZone.SelectedIndex].ToString();
+            Debug.WriteLine(cmbTimeZone.Items[cmbTimeZone.SelectedIndex].ToString());
+        }
+
+        private void btnEnableScreenSaver_Click(object sender, EventArgs e)
+        {
+            RegistryKey currentUser = RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive.CurrentUser, RegistryView.Registry64);
+
+            var reg = currentUser.OpenSubKey("SOFTWARE\\Policies\\Microsoft\\Windows\\Control Panel\\Desktop", true);
+            if (reg == null)
+            {
+                reg = currentUser.CreateSubKey("SOFTWARE\\Policies\\Microsoft\\Windows\\Control Panel\\Desktop");
+            }
+            reg.SetValue("ScreenSaveActive", "1", RegistryValueKind.String);
+        }
+
+        private void btnDisableScreenSaver_Click(object sender, EventArgs e)
+        {
+            RegistryKey currentUser = RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive.CurrentUser, RegistryView.Registry64);
+
+            var reg = currentUser.OpenSubKey("SOFTWARE\\Policies\\Microsoft\\Windows\\Control Panel\\Desktop", true);
+            if (reg == null)
+            {
+                reg = currentUser.CreateSubKey("SOFTWARE\\Policies\\Microsoft\\Windows\\Control Panel\\Desktop");
+            }
+            reg.SetValue("ScreenSaveActive", "0", RegistryValueKind.String);
+        }
+
+        private void btnAutoLoginEnable_Click(object sender, EventArgs e)
+        {
+            RegistryKey localMachine = RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive.LocalMachine, RegistryView.Registry64);
+
+            var reg = localMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon", true);
+            if (reg == null)
+            {
+                reg = localMachine.CreateSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon");
+            }
+            reg.SetValue("DefaultUserName", txtAutoLoginUserName.Text);
+            reg.SetValue("DefaultPassword", txtAutoLoginPassword.Text);
+            reg.SetValue("AutoAdminLogon", "1", RegistryValueKind.String);
+        }
+
+        private void btnAutoLoginDisable_Click(object sender, EventArgs e)
+        {
+            RegistryKey localMachine = RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive.LocalMachine, RegistryView.Registry64);
+
+            var reg = localMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon", true);
+            if (reg == null)
+            {
+                reg = localMachine.CreateSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon");
+            }
+            reg.SetValue("AutoAdminLogon", "0", RegistryValueKind.String);
+        }
     }
+
+    // Auto Login
+    //Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon
+    //DefaultUserName
+    //DefaultPassword
+    //AutoAdminLogon = 1
+
 }

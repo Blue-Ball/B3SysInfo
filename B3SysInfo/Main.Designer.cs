@@ -28,52 +28,52 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewGroup listViewGroup10 = new System.Windows.Forms.ListViewGroup("System Information", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup11 = new System.Windows.Forms.ListViewGroup("Power Config Value", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewItem listViewItem46 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("System Information", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("Power Config Value", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem(new string[] {
             "Host Name",
             "0"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem47 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem17 = new System.Windows.Forms.ListViewItem(new string[] {
             "System Model",
             "1"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem48 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem18 = new System.Windows.Forms.ListViewItem(new string[] {
             "Serial Number",
             "2"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem49 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem19 = new System.Windows.Forms.ListViewItem(new string[] {
             "IP Address",
             "3"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem50 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem20 = new System.Windows.Forms.ListViewItem(new string[] {
             "DNS Address",
             "4"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem51 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem21 = new System.Windows.Forms.ListViewItem(new string[] {
             "Static",
             "5"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem52 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem22 = new System.Windows.Forms.ListViewItem(new string[] {
             "NS Lookup Hostname",
             "6"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem53 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem23 = new System.Windows.Forms.ListViewItem(new string[] {
             "Time Zone",
             "7"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem54 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem24 = new System.Windows.Forms.ListViewItem(new string[] {
             "CPU Information",
             "8"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem55 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem25 = new System.Windows.Forms.ListViewItem(new string[] {
             "Disk Storage information",
             "9"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem56 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem26 = new System.Windows.Forms.ListViewItem(new string[] {
             "RAM information",
             "10"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem57 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem27 = new System.Windows.Forms.ListViewItem(new string[] {
             "Display Resolution",
             "11"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem58 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem28 = new System.Windows.Forms.ListViewItem(new string[] {
             "1) Sleep After AC Power Value",
             "12"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem59 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem29 = new System.Windows.Forms.ListViewItem(new string[] {
             "2) Turn off display after AC Power Value",
             "13"}, -1);
-            System.Windows.Forms.ListViewGroup listViewGroup12 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewItem listViewItem60 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewItem listViewItem30 = new System.Windows.Forms.ListViewItem(new string[] {
             "asdfsdfds",
             "dsfdsfds"}, -1);
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -86,6 +86,22 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabConfiguration = new System.Windows.Forms.TabPage();
+            this.btnAutoLoginEnable = new System.Windows.Forms.Button();
+            this.btnAutoLoginDisable = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
+            this.btnEnableScreenSaver = new System.Windows.Forms.Button();
+            this.btnDisableScreenSaver = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.btnChangeTimeZone = new System.Windows.Forms.Button();
+            this.lblCurrentTimeZone = new System.Windows.Forms.Label();
+            this.cmbTimeZone = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.btnUninstall = new System.Windows.Forms.Button();
+            this.btnGetPrograms = new System.Windows.Forms.Button();
+            this.listViewPrograms = new System.Windows.Forms.ListView();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBoxPort = new System.Windows.Forms.TextBox();
             this.labelPortQueryValue = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnCheckPort = new System.Windows.Forms.Button();
@@ -100,27 +116,26 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabEmail = new System.Windows.Forms.TabPage();
-            this.textBoxPort = new System.Windows.Forms.TextBox();
-            this.listViewPrograms = new System.Windows.Forms.ListView();
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnGetPrograms = new System.Windows.Forms.Button();
-            this.btnUninstall = new System.Windows.Forms.Button();
+            this.btnGenerate = new System.Windows.Forms.Button();
+            this.btnSend = new System.Windows.Forms.Button();
+            this.txtMailBody = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtMailTitle = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtMailTo = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtMailPwd = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtMailUserName = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtMailPort = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtMailHost = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtMailUserName = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtMailPwd = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtMailTo = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtMailTitle = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txtMailBody = new System.Windows.Forms.TextBox();
-            this.btnSend = new System.Windows.Forms.Button();
-            this.btnGenerate = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtAutoLoginUserName = new System.Windows.Forms.TextBox();
+            this.txtAutoLoginPassword = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabSystemInfo.SuspendLayout();
             this.tabCertificateInfo.SuspendLayout();
@@ -163,44 +178,44 @@
             this.columnHeader2});
             this.lstDisplayHardware.FullRowSelect = true;
             this.lstDisplayHardware.GridLines = true;
-            listViewGroup10.Header = "System Information";
-            listViewGroup10.Name = "ListViewGroupSystemInfo";
-            listViewGroup11.Header = "Power Config Value";
-            listViewGroup11.Name = "listGroupPowerConfig";
+            listViewGroup4.Header = "System Information";
+            listViewGroup4.Name = "ListViewGroupSystemInfo";
+            listViewGroup5.Header = "Power Config Value";
+            listViewGroup5.Name = "listGroupPowerConfig";
             this.lstDisplayHardware.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup10,
-            listViewGroup11});
+            listViewGroup4,
+            listViewGroup5});
             this.lstDisplayHardware.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lstDisplayHardware.HideSelection = false;
-            listViewItem46.Group = listViewGroup10;
-            listViewItem47.Group = listViewGroup10;
-            listViewItem48.Group = listViewGroup10;
-            listViewItem49.Group = listViewGroup10;
-            listViewItem50.Group = listViewGroup10;
-            listViewItem51.Group = listViewGroup10;
-            listViewItem52.Group = listViewGroup10;
-            listViewItem53.Group = listViewGroup10;
-            listViewItem54.Group = listViewGroup10;
-            listViewItem55.Group = listViewGroup10;
-            listViewItem56.Group = listViewGroup10;
-            listViewItem57.Group = listViewGroup10;
-            listViewItem58.Group = listViewGroup11;
-            listViewItem59.Group = listViewGroup11;
+            listViewItem16.Group = listViewGroup4;
+            listViewItem17.Group = listViewGroup4;
+            listViewItem18.Group = listViewGroup4;
+            listViewItem19.Group = listViewGroup4;
+            listViewItem20.Group = listViewGroup4;
+            listViewItem21.Group = listViewGroup4;
+            listViewItem22.Group = listViewGroup4;
+            listViewItem23.Group = listViewGroup4;
+            listViewItem24.Group = listViewGroup4;
+            listViewItem25.Group = listViewGroup4;
+            listViewItem26.Group = listViewGroup4;
+            listViewItem27.Group = listViewGroup4;
+            listViewItem28.Group = listViewGroup5;
+            listViewItem29.Group = listViewGroup5;
             this.lstDisplayHardware.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem46,
-            listViewItem47,
-            listViewItem48,
-            listViewItem49,
-            listViewItem50,
-            listViewItem51,
-            listViewItem52,
-            listViewItem53,
-            listViewItem54,
-            listViewItem55,
-            listViewItem56,
-            listViewItem57,
-            listViewItem58,
-            listViewItem59});
+            listViewItem16,
+            listViewItem17,
+            listViewItem18,
+            listViewItem19,
+            listViewItem20,
+            listViewItem21,
+            listViewItem22,
+            listViewItem23,
+            listViewItem24,
+            listViewItem25,
+            listViewItem26,
+            listViewItem27,
+            listViewItem28,
+            listViewItem29});
             this.lstDisplayHardware.Location = new System.Drawing.Point(0, 0);
             this.lstDisplayHardware.Name = "lstDisplayHardware";
             this.lstDisplayHardware.Size = new System.Drawing.Size(758, 461);
@@ -236,14 +251,14 @@
             this.columnHeader3,
             this.columnHeader4});
             this.listViewCertificate.FullRowSelect = true;
-            listViewGroup12.Header = "ListViewGroup";
-            listViewGroup12.Name = "listViewGroup1";
+            listViewGroup6.Header = "ListViewGroup";
+            listViewGroup6.Name = "listViewGroup1";
             this.listViewCertificate.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup12});
+            listViewGroup6});
             this.listViewCertificate.HideSelection = false;
-            listViewItem60.Group = listViewGroup12;
+            listViewItem30.Group = listViewGroup6;
             this.listViewCertificate.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem60});
+            listViewItem30});
             this.listViewCertificate.Location = new System.Drawing.Point(0, 0);
             this.listViewCertificate.Name = "listViewCertificate";
             this.listViewCertificate.Size = new System.Drawing.Size(758, 461);
@@ -264,6 +279,21 @@
             // tabConfiguration
             // 
             this.tabConfiguration.BackColor = System.Drawing.Color.Gainsboro;
+            this.tabConfiguration.Controls.Add(this.txtAutoLoginPassword);
+            this.tabConfiguration.Controls.Add(this.label19);
+            this.tabConfiguration.Controls.Add(this.txtAutoLoginUserName);
+            this.tabConfiguration.Controls.Add(this.label18);
+            this.tabConfiguration.Controls.Add(this.btnAutoLoginEnable);
+            this.tabConfiguration.Controls.Add(this.btnAutoLoginDisable);
+            this.tabConfiguration.Controls.Add(this.label17);
+            this.tabConfiguration.Controls.Add(this.btnEnableScreenSaver);
+            this.tabConfiguration.Controls.Add(this.btnDisableScreenSaver);
+            this.tabConfiguration.Controls.Add(this.label16);
+            this.tabConfiguration.Controls.Add(this.btnChangeTimeZone);
+            this.tabConfiguration.Controls.Add(this.lblCurrentTimeZone);
+            this.tabConfiguration.Controls.Add(this.cmbTimeZone);
+            this.tabConfiguration.Controls.Add(this.label15);
+            this.tabConfiguration.Controls.Add(this.label14);
             this.tabConfiguration.Controls.Add(this.btnUninstall);
             this.tabConfiguration.Controls.Add(this.btnGetPrograms);
             this.tabConfiguration.Controls.Add(this.listViewPrograms);
@@ -287,10 +317,163 @@
             this.tabConfiguration.TabIndex = 2;
             this.tabConfiguration.Text = "Configuration";
             // 
+            // btnAutoLoginEnable
+            // 
+            this.btnAutoLoginEnable.Location = new System.Drawing.Point(502, 387);
+            this.btnAutoLoginEnable.Name = "btnAutoLoginEnable";
+            this.btnAutoLoginEnable.Size = new System.Drawing.Size(75, 23);
+            this.btnAutoLoginEnable.TabIndex = 26;
+            this.btnAutoLoginEnable.Text = "Enable";
+            this.btnAutoLoginEnable.UseVisualStyleBackColor = true;
+            this.btnAutoLoginEnable.Click += new System.EventHandler(this.btnAutoLoginEnable_Click);
+            // 
+            // btnAutoLoginDisable
+            // 
+            this.btnAutoLoginDisable.Location = new System.Drawing.Point(588, 387);
+            this.btnAutoLoginDisable.Name = "btnAutoLoginDisable";
+            this.btnAutoLoginDisable.Size = new System.Drawing.Size(75, 23);
+            this.btnAutoLoginDisable.TabIndex = 25;
+            this.btnAutoLoginDisable.Text = "Disable";
+            this.btnAutoLoginDisable.UseVisualStyleBackColor = true;
+            this.btnAutoLoginDisable.Click += new System.EventHandler(this.btnAutoLoginDisable_Click);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(36, 388);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(96, 20);
+            this.label17.TabIndex = 24;
+            this.label17.Text = "Auto Login";
+            // 
+            // btnEnableScreenSaver
+            // 
+            this.btnEnableScreenSaver.Location = new System.Drawing.Point(226, 346);
+            this.btnEnableScreenSaver.Name = "btnEnableScreenSaver";
+            this.btnEnableScreenSaver.Size = new System.Drawing.Size(75, 23);
+            this.btnEnableScreenSaver.TabIndex = 23;
+            this.btnEnableScreenSaver.Text = "Enable";
+            this.btnEnableScreenSaver.UseVisualStyleBackColor = true;
+            this.btnEnableScreenSaver.Click += new System.EventHandler(this.btnEnableScreenSaver_Click);
+            // 
+            // btnDisableScreenSaver
+            // 
+            this.btnDisableScreenSaver.Location = new System.Drawing.Point(312, 346);
+            this.btnDisableScreenSaver.Name = "btnDisableScreenSaver";
+            this.btnDisableScreenSaver.Size = new System.Drawing.Size(75, 23);
+            this.btnDisableScreenSaver.TabIndex = 22;
+            this.btnDisableScreenSaver.Text = "Disable";
+            this.btnDisableScreenSaver.UseVisualStyleBackColor = true;
+            this.btnDisableScreenSaver.Click += new System.EventHandler(this.btnDisableScreenSaver_Click);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(36, 349);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(182, 20);
+            this.label16.TabIndex = 21;
+            this.label16.Text = "Disable Screen Saver";
+            // 
+            // btnChangeTimeZone
+            // 
+            this.btnChangeTimeZone.Location = new System.Drawing.Point(521, 316);
+            this.btnChangeTimeZone.Name = "btnChangeTimeZone";
+            this.btnChangeTimeZone.Size = new System.Drawing.Size(75, 23);
+            this.btnChangeTimeZone.TabIndex = 20;
+            this.btnChangeTimeZone.Text = "Change";
+            this.btnChangeTimeZone.UseVisualStyleBackColor = true;
+            this.btnChangeTimeZone.Click += new System.EventHandler(this.btnChangeTimeZone_Click);
+            // 
+            // lblCurrentTimeZone
+            // 
+            this.lblCurrentTimeZone.AutoSize = true;
+            this.lblCurrentTimeZone.Location = new System.Drawing.Point(148, 321);
+            this.lblCurrentTimeZone.Name = "lblCurrentTimeZone";
+            this.lblCurrentTimeZone.Size = new System.Drawing.Size(109, 13);
+            this.lblCurrentTimeZone.TabIndex = 19;
+            this.lblCurrentTimeZone.Text = "Tokyo Standard Time";
+            // 
+            // cmbTimeZone
+            // 
+            this.cmbTimeZone.FormattingEnabled = true;
+            this.cmbTimeZone.Location = new System.Drawing.Point(312, 317);
+            this.cmbTimeZone.Name = "cmbTimeZone";
+            this.cmbTimeZone.Size = new System.Drawing.Size(195, 21);
+            this.cmbTimeZone.TabIndex = 18;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(35, 317);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(93, 20);
+            this.label15.TabIndex = 17;
+            this.label15.Text = "Time Zone";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(35, 163);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(85, 20);
+            this.label14.TabIndex = 16;
+            this.label14.Text = "Programs";
+            // 
+            // btnUninstall
+            // 
+            this.btnUninstall.Location = new System.Drawing.Point(666, 217);
+            this.btnUninstall.Name = "btnUninstall";
+            this.btnUninstall.Size = new System.Drawing.Size(75, 23);
+            this.btnUninstall.TabIndex = 15;
+            this.btnUninstall.Text = "Uninstall";
+            this.btnUninstall.UseVisualStyleBackColor = true;
+            this.btnUninstall.Click += new System.EventHandler(this.btnUninstall_Click);
+            // 
+            // btnGetPrograms
+            // 
+            this.btnGetPrograms.Location = new System.Drawing.Point(666, 188);
+            this.btnGetPrograms.Name = "btnGetPrograms";
+            this.btnGetPrograms.Size = new System.Drawing.Size(75, 23);
+            this.btnGetPrograms.TabIndex = 14;
+            this.btnGetPrograms.Text = "Get";
+            this.btnGetPrograms.UseVisualStyleBackColor = true;
+            this.btnGetPrograms.Click += new System.EventHandler(this.btnGetPrograms_Click);
+            // 
+            // listViewPrograms
+            // 
+            this.listViewPrograms.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader5});
+            this.listViewPrograms.FullRowSelect = true;
+            this.listViewPrograms.HideSelection = false;
+            this.listViewPrograms.Location = new System.Drawing.Point(61, 188);
+            this.listViewPrograms.Name = "listViewPrograms";
+            this.listViewPrograms.Size = new System.Drawing.Size(602, 117);
+            this.listViewPrograms.TabIndex = 13;
+            this.listViewPrograms.UseCompatibleStateImageBehavior = false;
+            this.listViewPrograms.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Programs";
+            this.columnHeader5.Width = 584;
+            // 
+            // textBoxPort
+            // 
+            this.textBoxPort.Location = new System.Drawing.Point(513, 135);
+            this.textBoxPort.Name = "textBoxPort";
+            this.textBoxPort.Size = new System.Drawing.Size(67, 20);
+            this.textBoxPort.TabIndex = 10;
+            this.textBoxPort.Text = "443";
+            // 
             // labelPortQueryValue
             // 
             this.labelPortQueryValue.AutoSize = true;
-            this.labelPortQueryValue.Location = new System.Drawing.Point(625, 148);
+            this.labelPortQueryValue.Location = new System.Drawing.Point(625, 139);
             this.labelPortQueryValue.Name = "labelPortQueryValue";
             this.labelPortQueryValue.Size = new System.Drawing.Size(0, 13);
             this.labelPortQueryValue.TabIndex = 12;
@@ -298,7 +481,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(586, 148);
+            this.label4.Location = new System.Drawing.Point(586, 139);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(36, 13);
             this.label4.TabIndex = 11;
@@ -306,7 +489,7 @@
             // 
             // btnCheckPort
             // 
-            this.btnCheckPort.Location = new System.Drawing.Point(666, 143);
+            this.btnCheckPort.Location = new System.Drawing.Point(666, 134);
             this.btnCheckPort.Name = "btnCheckPort";
             this.btnCheckPort.Size = new System.Drawing.Size(75, 23);
             this.btnCheckPort.TabIndex = 10;
@@ -316,7 +499,7 @@
             // 
             // textBoxAddress
             // 
-            this.textBoxAddress.Location = new System.Drawing.Point(328, 144);
+            this.textBoxAddress.Location = new System.Drawing.Point(328, 135);
             this.textBoxAddress.Name = "textBoxAddress";
             this.textBoxAddress.Size = new System.Drawing.Size(179, 20);
             this.textBoxAddress.TabIndex = 9;
@@ -326,7 +509,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(58, 146);
+            this.label5.Location = new System.Drawing.Point(58, 137);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(264, 16);
             this.label5.TabIndex = 8;
@@ -336,7 +519,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(35, 115);
+            this.label6.Location = new System.Drawing.Point(35, 106);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(94, 20);
             this.label6.TabIndex = 7;
@@ -431,51 +614,112 @@
             this.tabEmail.TabIndex = 3;
             this.tabEmail.Text = "Email";
             // 
-            // textBoxPort
+            // btnGenerate
             // 
-            this.textBoxPort.Location = new System.Drawing.Point(513, 144);
-            this.textBoxPort.Name = "textBoxPort";
-            this.textBoxPort.Size = new System.Drawing.Size(67, 20);
-            this.textBoxPort.TabIndex = 10;
-            this.textBoxPort.Text = "443";
+            this.btnGenerate.Location = new System.Drawing.Point(299, 427);
+            this.btnGenerate.Name = "btnGenerate";
+            this.btnGenerate.Size = new System.Drawing.Size(75, 23);
+            this.btnGenerate.TabIndex = 24;
+            this.btnGenerate.Text = "Generate";
+            this.btnGenerate.UseVisualStyleBackColor = true;
+            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 
-            // listViewPrograms
+            // btnSend
             // 
-            this.listViewPrograms.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader5});
-            this.listViewPrograms.FullRowSelect = true;
-            this.listViewPrograms.HideSelection = false;
-            this.listViewPrograms.Location = new System.Drawing.Point(61, 195);
-            this.listViewPrograms.Name = "listViewPrograms";
-            this.listViewPrograms.Size = new System.Drawing.Size(602, 117);
-            this.listViewPrograms.TabIndex = 13;
-            this.listViewPrograms.UseCompatibleStateImageBehavior = false;
-            this.listViewPrograms.View = System.Windows.Forms.View.Details;
+            this.btnSend.Location = new System.Drawing.Point(468, 427);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Size = new System.Drawing.Size(75, 23);
+            this.btnSend.TabIndex = 23;
+            this.btnSend.Text = "Send";
+            this.btnSend.UseVisualStyleBackColor = true;
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
-            // columnHeader5
+            // txtMailBody
             // 
-            this.columnHeader5.Text = "Programs";
-            this.columnHeader5.Width = 584;
+            this.txtMailBody.Location = new System.Drawing.Point(134, 183);
+            this.txtMailBody.Multiline = true;
+            this.txtMailBody.Name = "txtMailBody";
+            this.txtMailBody.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtMailBody.Size = new System.Drawing.Size(577, 228);
+            this.txtMailBody.TabIndex = 22;
             // 
-            // btnGetPrograms
+            // label13
             // 
-            this.btnGetPrograms.Location = new System.Drawing.Point(666, 195);
-            this.btnGetPrograms.Name = "btnGetPrograms";
-            this.btnGetPrograms.Size = new System.Drawing.Size(75, 23);
-            this.btnGetPrograms.TabIndex = 14;
-            this.btnGetPrograms.Text = "Get";
-            this.btnGetPrograms.UseVisualStyleBackColor = true;
-            this.btnGetPrograms.Click += new System.EventHandler(this.btnGetPrograms_Click);
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(89, 186);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(31, 13);
+            this.label13.TabIndex = 21;
+            this.label13.Text = "Body";
             // 
-            // btnUninstall
+            // label12
             // 
-            this.btnUninstall.Location = new System.Drawing.Point(666, 224);
-            this.btnUninstall.Name = "btnUninstall";
-            this.btnUninstall.Size = new System.Drawing.Size(75, 23);
-            this.btnUninstall.TabIndex = 15;
-            this.btnUninstall.Text = "Uninstall";
-            this.btnUninstall.UseVisualStyleBackColor = true;
-            this.btnUninstall.Click += new System.EventHandler(this.btnUninstall_Click);
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(89, 160);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(27, 13);
+            this.label12.TabIndex = 19;
+            this.label12.Text = "Title";
+            // 
+            // txtMailTitle
+            // 
+            this.txtMailTitle.Location = new System.Drawing.Point(134, 157);
+            this.txtMailTitle.Name = "txtMailTitle";
+            this.txtMailTitle.Size = new System.Drawing.Size(577, 20);
+            this.txtMailTitle.TabIndex = 18;
+            this.txtMailTitle.Text = "Report";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(98, 134);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(20, 13);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "To";
+            // 
+            // txtMailTo
+            // 
+            this.txtMailTo.Location = new System.Drawing.Point(134, 131);
+            this.txtMailTo.Name = "txtMailTo";
+            this.txtMailTo.Size = new System.Drawing.Size(577, 20);
+            this.txtMailTo.TabIndex = 16;
+            this.txtMailTo.Text = "shkuratovmong@mail.ru";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(65, 108);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 13);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Password";
+            // 
+            // txtMailPwd
+            // 
+            this.txtMailPwd.Location = new System.Drawing.Point(134, 105);
+            this.txtMailPwd.Name = "txtMailPwd";
+            this.txtMailPwd.Size = new System.Drawing.Size(577, 20);
+            this.txtMailPwd.TabIndex = 14;
+            this.txtMailPwd.Text = "aaa";
+            this.txtMailPwd.UseSystemPasswordChar = true;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(61, 82);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(57, 13);
+            this.label11.TabIndex = 13;
+            this.label11.Text = "UserName";
+            // 
+            // txtMailUserName
+            // 
+            this.txtMailUserName.Location = new System.Drawing.Point(134, 79);
+            this.txtMailUserName.Name = "txtMailUserName";
+            this.txtMailUserName.Size = new System.Drawing.Size(577, 20);
+            this.txtMailUserName.TabIndex = 12;
+            this.txtMailUserName.Text = "shkuratovu@gmail.com";
             // 
             // label9
             // 
@@ -511,112 +755,38 @@
             this.txtMailHost.TabIndex = 8;
             this.txtMailHost.Text = "smtp.gmail.com";
             // 
-            // label11
+            // label18
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(61, 82);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(57, 13);
-            this.label11.TabIndex = 13;
-            this.label11.Text = "UserName";
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(138, 393);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(60, 13);
+            this.label18.TabIndex = 27;
+            this.label18.Text = "User Name";
             // 
-            // txtMailUserName
+            // txtAutoLoginUserName
             // 
-            this.txtMailUserName.Location = new System.Drawing.Point(134, 79);
-            this.txtMailUserName.Name = "txtMailUserName";
-            this.txtMailUserName.Size = new System.Drawing.Size(577, 20);
-            this.txtMailUserName.TabIndex = 12;
-            this.txtMailUserName.Text = "shkuratovu@gmail.com";
+            this.txtAutoLoginUserName.Location = new System.Drawing.Point(204, 390);
+            this.txtAutoLoginUserName.Name = "txtAutoLoginUserName";
+            this.txtAutoLoginUserName.Size = new System.Drawing.Size(100, 20);
+            this.txtAutoLoginUserName.TabIndex = 28;
             // 
-            // label7
+            // txtAutoLoginPassword
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(65, 108);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(53, 13);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Password";
+            this.txtAutoLoginPassword.Location = new System.Drawing.Point(391, 390);
+            this.txtAutoLoginPassword.Name = "txtAutoLoginPassword";
+            this.txtAutoLoginPassword.Size = new System.Drawing.Size(100, 20);
+            this.txtAutoLoginPassword.TabIndex = 30;
+            this.txtAutoLoginPassword.UseSystemPasswordChar = true;
             // 
-            // txtMailPwd
+            // label19
             // 
-            this.txtMailPwd.Location = new System.Drawing.Point(134, 105);
-            this.txtMailPwd.Name = "txtMailPwd";
-            this.txtMailPwd.Size = new System.Drawing.Size(577, 20);
-            this.txtMailPwd.TabIndex = 14;
-            this.txtMailPwd.Text = "aaa";
-            this.txtMailPwd.UseSystemPasswordChar = true;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(98, 134);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(20, 13);
-            this.label8.TabIndex = 17;
-            this.label8.Text = "To";
-            // 
-            // txtMailTo
-            // 
-            this.txtMailTo.Location = new System.Drawing.Point(134, 131);
-            this.txtMailTo.Name = "txtMailTo";
-            this.txtMailTo.Size = new System.Drawing.Size(577, 20);
-            this.txtMailTo.TabIndex = 16;
-            this.txtMailTo.Text = "shkuratovmong@mail.ru";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(89, 160);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(27, 13);
-            this.label12.TabIndex = 19;
-            this.label12.Text = "Title";
-            // 
-            // txtMailTitle
-            // 
-            this.txtMailTitle.Location = new System.Drawing.Point(134, 157);
-            this.txtMailTitle.Name = "txtMailTitle";
-            this.txtMailTitle.Size = new System.Drawing.Size(577, 20);
-            this.txtMailTitle.TabIndex = 18;
-            this.txtMailTitle.Text = "Report";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(89, 186);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(31, 13);
-            this.label13.TabIndex = 21;
-            this.label13.Text = "Body";
-            // 
-            // txtMailBody
-            // 
-            this.txtMailBody.Location = new System.Drawing.Point(134, 183);
-            this.txtMailBody.Multiline = true;
-            this.txtMailBody.Name = "txtMailBody";
-            this.txtMailBody.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtMailBody.Size = new System.Drawing.Size(577, 228);
-            this.txtMailBody.TabIndex = 22;
-            // 
-            // btnSend
-            // 
-            this.btnSend.Location = new System.Drawing.Point(468, 427);
-            this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(75, 23);
-            this.btnSend.TabIndex = 23;
-            this.btnSend.Text = "Send";
-            this.btnSend.UseVisualStyleBackColor = true;
-            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
-            // 
-            // btnGenerate
-            // 
-            this.btnGenerate.Location = new System.Drawing.Point(299, 427);
-            this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(75, 23);
-            this.btnGenerate.TabIndex = 24;
-            this.btnGenerate.Text = "Generate";
-            this.btnGenerate.UseVisualStyleBackColor = true;
-            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(325, 393);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(53, 13);
+            this.label19.TabIndex = 29;
+            this.label19.Text = "Password";
             // 
             // MainForm
             // 
@@ -688,5 +858,20 @@
         private System.Windows.Forms.TextBox txtMailBody;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.Button btnGenerate;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox cmbTimeZone;
+        private System.Windows.Forms.Button btnChangeTimeZone;
+        private System.Windows.Forms.Label lblCurrentTimeZone;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button btnDisableScreenSaver;
+        private System.Windows.Forms.Button btnEnableScreenSaver;
+        private System.Windows.Forms.Button btnAutoLoginEnable;
+        private System.Windows.Forms.Button btnAutoLoginDisable;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox txtAutoLoginPassword;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox txtAutoLoginUserName;
     }
 }
