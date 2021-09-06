@@ -483,7 +483,7 @@ namespace loading_screen
             cmdProcess.BeginOutputReadLine();
             //cmdProcess.BeginErrorReadLine();
 
-            String strArg = String.Format("C:\\PortQryV2\\PortQry.exe -n {0} -o {1}", hostname, portno);
+            String strArg = String.Format("PortQry.exe -n {0} -o {1}", hostname, portno);
             cmdProcess.StandardInput.WriteLine(strArg);     //Execute ping bing.com
             cmdProcess.StandardInput.WriteLine("exit");                  //Execute exit.
 
@@ -507,6 +507,7 @@ namespace loading_screen
 
         private void btnGetPrograms_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("It will be taken some time. Please wait.");
             ProcessStartInfo cmdStartInfo = new ProcessStartInfo();
             cmdStartInfo.FileName = @"cmd";
             cmdStartInfo.RedirectStandardOutput = true;
@@ -542,6 +543,8 @@ namespace loading_screen
                 item.Text = m_lstPrograms[i];
                 listViewPrograms.Items.Add(item);
             }
+
+            MessageBox.Show("Done");
         }
 
         public void cmd_ProgramsReceived(object sender, DataReceivedEventArgs e)
@@ -604,18 +607,6 @@ namespace loading_screen
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            //MailMessage mail = new MailMessage();
-            //mail.To.Add("shkuratovmong@mail.ru");
-            //mail.From = new MailAddress("shkuratovu@gmail.com");
-            //mail.Subject = "subject";
-            //mail.Body = "Body";
-            //mail.IsBodyHtml = false;
-            //SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-            //smtp.EnableSsl = true;
-            //smtp.UseDefaultCredentials = false;
-            //smtp.Credentials = new System.Net.NetworkCredential("shkuratovu@gmail.com", "mongerin118");
-            //smtp.Send(mail);
-
             String strResponse = EmailHelper.SendMessageViaMailKit(txtMailHost.Text,
                 int.Parse(txtMailPort.Text),
                 txtMailUserName.Text,
@@ -687,11 +678,5 @@ namespace loading_screen
             reg.SetValue("AutoAdminLogon", "0", RegistryValueKind.String);
         }
     }
-
-    // Auto Login
-    //Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon
-    //DefaultUserName
-    //DefaultPassword
-    //AutoAdminLogon = 1
 
 }
