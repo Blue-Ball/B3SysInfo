@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Management;
 using System.Net;
+using System.Net.Mail;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
@@ -482,14 +483,27 @@ namespace loading_screen
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            EmailHelper.SendMessage1(txtMailHost.Text,
-                int.Parse(textBoxPort.Text),
-                txtMailUserName.Text, 
-                txtMailPwd.Text, 
-                txtMailTo.Text, 
+            //MailMessage mail = new MailMessage();
+            //mail.To.Add("shkuratovmong@mail.ru");
+            //mail.From = new MailAddress("shkuratovu@gmail.com");
+            //mail.Subject = "subject";
+            //mail.Body = "Body";
+            //mail.IsBodyHtml = false;
+            //SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            //smtp.EnableSsl = true;
+            //smtp.UseDefaultCredentials = false;
+            //smtp.Credentials = new System.Net.NetworkCredential("shkuratovu@gmail.com", "mongerin118");
+            //smtp.Send(mail);
+
+            String strResponse = EmailHelper.SendMessageViaMailKit(txtMailHost.Text,
+                int.Parse(txtMailPort.Text),
                 txtMailUserName.Text,
-                txtMailTitle.Text, 
+                txtMailPwd.Text,
+                txtMailTo.Text,
+                txtMailUserName.Text,
+                txtMailTitle.Text,
                 txtMailBody.Text);
+            MessageBox.Show(strResponse);
         }
     }
 }

@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net;
-using System.Net.Mail;
-//using DomainClasses;
-using System.IO;
+using MailKit.Net.Smtp;
+using MailKit;
+using MimeKit;
 
 namespace loading_screen
 {
@@ -15,40 +10,78 @@ namespace loading_screen
     /// </summary>
     public static class EmailHelper
     {
-        public static string SendMessage1(string strServer, int nPort, string strUsername, string strPwd, string strTo, string strFrom, string strTitle, string strBody)
+        public static string SendMessage(string strServer, int nPort, string strUsername, string strPwd, string strTo, string strFrom, string strTitle, string strBody)
         {
-            MailAddress from = new MailAddress(strFrom);
-            MailAddress to = new MailAddress(strTo);
-            MailMessage message = new MailMessage(from, to);
+            //var fromAddress = new MailAddress(strFrom, strFrom);
+            //var toAddress = new MailAddress(strTo, strTo);
+            //string fromPassword = strPwd;
+            //string subject = strTitle;
+            //string body = strBody;
 
-            //System.Net.Mail.Attachment attachment = new System.Net.Mail.Attachment(Environment.CurrentDirectory + "/file.pdf");
+            //var smtp = new SmtpClient
+            //{
+            //    Host = strServer,
+            //    Port = nPort,
+            //    EnableSsl = true,
+            //    DeliveryMethod = SmtpDeliveryMethod.Network,
+            //    UseDefaultCredentials = false,
+            //    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            //};
+            //using (var message = new MailMessage(fromAddress, toAddress)
+            //{
+            //    Subject = subject,
+            //    Body = body
+            //})
+            //{
+            //    try
+            //    {
+            //        smtp.Send(message);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Console.WriteLine("Exception caught in SendMessage(): {0}",
+            //                    ex.ToString());
+            //        return ex.Message;
+            //    }
+            //}
 
-            var smtp = new SmtpClient
+
+            return "ok";
+        }
+
+        public static string SendMessageViaMailKit(string strServer, int nPort, string strUsername, string strPwd, string strTo, string strFrom, string strTitle, string strBody)
+        {
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress(strFrom, strFrom));
+            message.To.Add(new MailboxAddress(strTo, strTo));
+            message.Subject = strTitle;
+
+            message.Body = new TextPart("plain")
             {
-                Host = strServer,
-                Port = nPort,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(strUsername, strPwd)
+                Text = strBody
             };
 
-            message.Subject = strTitle;
-            message.Body = strBody;
-
-            SmtpClient client = smtp;
-
-            try
+            using (var client = new SmtpClient())
             {
-                client.Send(message);
+                try
+                {
+                    client.Connect(strServer, nPort, false);
+
+                    // Note: only needed if the SMTP server requires authentication
+                    client.Authenticate(strUsername, strPwd);
+
+                    client.Send(message);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Exception caught in SendMessage(): {0}",
+                                ex.ToString());
+                    return ex.Message;
+                }
+                client.Disconnect(true);
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Exception caught in SendMessage(): {0}",
-                            ex.ToString());
-                return ex.Message;
-            }
-            return "ok";
+
+            return "OK";
         }
     }
 }

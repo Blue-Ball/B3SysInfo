@@ -28,52 +28,52 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("System Information", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Power Config Value", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewGroup listViewGroup10 = new System.Windows.Forms.ListViewGroup("System Information", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup11 = new System.Windows.Forms.ListViewGroup("Power Config Value", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewItem listViewItem46 = new System.Windows.Forms.ListViewItem(new string[] {
             "Host Name",
             "0"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem47 = new System.Windows.Forms.ListViewItem(new string[] {
             "System Model",
             "1"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem48 = new System.Windows.Forms.ListViewItem(new string[] {
             "Serial Number",
             "2"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem49 = new System.Windows.Forms.ListViewItem(new string[] {
             "IP Address",
             "3"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem50 = new System.Windows.Forms.ListViewItem(new string[] {
             "DNS Address",
             "4"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem51 = new System.Windows.Forms.ListViewItem(new string[] {
             "Static",
             "5"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem52 = new System.Windows.Forms.ListViewItem(new string[] {
             "NS Lookup Hostname",
             "6"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem53 = new System.Windows.Forms.ListViewItem(new string[] {
             "Time Zone",
             "7"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem54 = new System.Windows.Forms.ListViewItem(new string[] {
             "CPU Information",
             "8"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem55 = new System.Windows.Forms.ListViewItem(new string[] {
             "Disk Storage information",
             "9"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem56 = new System.Windows.Forms.ListViewItem(new string[] {
             "RAM information",
             "10"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem57 = new System.Windows.Forms.ListViewItem(new string[] {
             "Display Resolution",
             "11"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem58 = new System.Windows.Forms.ListViewItem(new string[] {
             "1) Sleep After AC Power Value",
             "12"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem59 = new System.Windows.Forms.ListViewItem(new string[] {
             "2) Turn off display after AC Power Value",
             "13"}, -1);
-            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewGroup listViewGroup12 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewItem listViewItem60 = new System.Windows.Forms.ListViewItem(new string[] {
             "asdfsdfds",
             "dsfdsfds"}, -1);
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -163,44 +163,44 @@
             this.columnHeader2});
             this.lstDisplayHardware.FullRowSelect = true;
             this.lstDisplayHardware.GridLines = true;
-            listViewGroup1.Header = "System Information";
-            listViewGroup1.Name = "ListViewGroupSystemInfo";
-            listViewGroup2.Header = "Power Config Value";
-            listViewGroup2.Name = "listGroupPowerConfig";
+            listViewGroup10.Header = "System Information";
+            listViewGroup10.Name = "ListViewGroupSystemInfo";
+            listViewGroup11.Header = "Power Config Value";
+            listViewGroup11.Name = "listGroupPowerConfig";
             this.lstDisplayHardware.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2});
+            listViewGroup10,
+            listViewGroup11});
             this.lstDisplayHardware.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lstDisplayHardware.HideSelection = false;
-            listViewItem1.Group = listViewGroup1;
-            listViewItem2.Group = listViewGroup1;
-            listViewItem3.Group = listViewGroup1;
-            listViewItem4.Group = listViewGroup1;
-            listViewItem5.Group = listViewGroup1;
-            listViewItem6.Group = listViewGroup1;
-            listViewItem7.Group = listViewGroup1;
-            listViewItem8.Group = listViewGroup1;
-            listViewItem9.Group = listViewGroup1;
-            listViewItem10.Group = listViewGroup1;
-            listViewItem11.Group = listViewGroup1;
-            listViewItem12.Group = listViewGroup1;
-            listViewItem13.Group = listViewGroup2;
-            listViewItem14.Group = listViewGroup2;
+            listViewItem46.Group = listViewGroup10;
+            listViewItem47.Group = listViewGroup10;
+            listViewItem48.Group = listViewGroup10;
+            listViewItem49.Group = listViewGroup10;
+            listViewItem50.Group = listViewGroup10;
+            listViewItem51.Group = listViewGroup10;
+            listViewItem52.Group = listViewGroup10;
+            listViewItem53.Group = listViewGroup10;
+            listViewItem54.Group = listViewGroup10;
+            listViewItem55.Group = listViewGroup10;
+            listViewItem56.Group = listViewGroup10;
+            listViewItem57.Group = listViewGroup10;
+            listViewItem58.Group = listViewGroup11;
+            listViewItem59.Group = listViewGroup11;
             this.lstDisplayHardware.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4,
-            listViewItem5,
-            listViewItem6,
-            listViewItem7,
-            listViewItem8,
-            listViewItem9,
-            listViewItem10,
-            listViewItem11,
-            listViewItem12,
-            listViewItem13,
-            listViewItem14});
+            listViewItem46,
+            listViewItem47,
+            listViewItem48,
+            listViewItem49,
+            listViewItem50,
+            listViewItem51,
+            listViewItem52,
+            listViewItem53,
+            listViewItem54,
+            listViewItem55,
+            listViewItem56,
+            listViewItem57,
+            listViewItem58,
+            listViewItem59});
             this.lstDisplayHardware.Location = new System.Drawing.Point(0, 0);
             this.lstDisplayHardware.Name = "lstDisplayHardware";
             this.lstDisplayHardware.Size = new System.Drawing.Size(758, 461);
@@ -236,14 +236,14 @@
             this.columnHeader3,
             this.columnHeader4});
             this.listViewCertificate.FullRowSelect = true;
-            listViewGroup3.Header = "ListViewGroup";
-            listViewGroup3.Name = "listViewGroup1";
+            listViewGroup12.Header = "ListViewGroup";
+            listViewGroup12.Name = "listViewGroup1";
             this.listViewCertificate.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup3});
+            listViewGroup12});
             this.listViewCertificate.HideSelection = false;
-            listViewItem15.Group = listViewGroup3;
+            listViewItem60.Group = listViewGroup12;
             this.listViewCertificate.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem15});
+            listViewItem60});
             this.listViewCertificate.Location = new System.Drawing.Point(0, 0);
             this.listViewCertificate.Name = "listViewCertificate";
             this.listViewCertificate.Size = new System.Drawing.Size(758, 461);
@@ -492,7 +492,7 @@
             this.txtMailPort.Name = "txtMailPort";
             this.txtMailPort.Size = new System.Drawing.Size(577, 20);
             this.txtMailPort.TabIndex = 10;
-            this.txtMailPort.Text = "443";
+            this.txtMailPort.Text = "587";
             // 
             // label10
             // 
