@@ -147,7 +147,62 @@ namespace loading_screen
                     }
 
                     // DNS Address
-                    lstDisplayHardware.Items[4].SubItems[1].Text = Dns.GetHostName();
+                    String strOut = "";
+
+                    ProcessStartInfo cmdStartInfo = new ProcessStartInfo();
+                    cmdStartInfo.FileName = @"cmd";
+                    cmdStartInfo.RedirectStandardOutput = true;
+                    cmdStartInfo.RedirectStandardError = true;
+                    cmdStartInfo.RedirectStandardInput = true;
+                    cmdStartInfo.UseShellExecute = false;
+                    cmdStartInfo.CreateNoWindow = true;
+
+                    Process cmdProcess = new Process();
+                    cmdProcess.StartInfo = cmdStartInfo;
+                    int nLineOut = 0;
+                    cmdProcess.OutputDataReceived += new DataReceivedEventHandler((sender1, e1) =>
+                    {
+                        if (e1.Data != null)
+                        {
+                            if (e1.Data.Equals("") == false)
+                            {
+                                nLineOut++;
+                                if (nLineOut > 3)
+                                {
+                                    strOut += e1.Data;
+                                    strOut += "\r\n";
+                                }
+                            }
+                        }
+                    });
+                    cmdProcess.Start();
+                    cmdProcess.BeginOutputReadLine();
+
+                    String strArg = String.Format("nslookup host");
+                    cmdProcess.StandardInput.WriteLine(strArg);     //Execute ping bing.com
+                    cmdProcess.StandardInput.WriteLine("exit");                  //Execute exit.
+
+                    cmdProcess.WaitForExit();
+                    cmdProcess.Close();
+
+                    strOut = strOut.Trim();
+                    strOut = strOut.Remove(strOut.LastIndexOf(Environment.NewLine));
+
+                    String []strarraytemp = strOut.Split(Environment.NewLine.ToCharArray());
+
+                    String strServerNS = "", strAddressNS = "";
+                    for (i = 0; i < strarraytemp.Length; i++)
+                    {
+                        if (strarraytemp[i].Trim().Length <= 0)
+                            continue;
+                        if(strarraytemp[i].Split(":".ToCharArray())[0].Trim().StartsWith("Server"))
+                            strServerNS = strarraytemp[i].Split(":".ToCharArray())[1].Trim();
+                        if (strarraytemp[i].Split(":".ToCharArray())[0].Trim().StartsWith("Address"))
+                            strAddressNS = strarraytemp[i].Split(":".ToCharArray())[1].Trim();
+                    }
+
+                    lstDisplayHardware.Items[4].SubItems[1].Text = strAddressNS;
+                    lstDisplayHardware.Items[6].SubItems[1].Text = strServerNS; // NS Lookup
 
                     // Static
                     lstDisplayHardware.Items[5].SubItems[1].Text = "";
@@ -195,7 +250,6 @@ namespace loading_screen
                                 if(strValue.Contains(lstDisplayHardware.Items[3].SubItems[1].Text))
                                 {
                                     lstDisplayHardware.Items[5].SubItems[1].Text = share.Properties["DHCPEnabled"].Value.ToString();
-                                    lstDisplayHardware.Items[6].SubItems[1].Text = share.Properties["WINSEnableLMHostsLookup"].Value.ToString();
                                     break;
                                 }
                             }
@@ -229,7 +283,9 @@ namespace loading_screen
                     {
                         if (share.Properties.Count > 0)
                         {
-                            lstDisplayHardware.Items[9].SubItems[1].Text = share.Properties["Size"].Value.ToString();
+                            Int64 nTemp = Int64.Parse(share.Properties["Size"].Value.ToString());
+                            nTemp = (Int64)(nTemp / 1000.0f / 1000.0f / 1000.0f);
+                            lstDisplayHardware.Items[9].SubItems[1].Text = nTemp.ToString() + "G";
                         }
                         break;
                     }
@@ -241,14 +297,16 @@ namespace loading_screen
                     {
                         if (share.Properties.Count > 0)
                         {
-                            lstDisplayHardware.Items[10].SubItems[1].Text = share.Properties["TotalPhysicalMemory"].Value.ToString();
+                            Int64 nTemp = Int64.Parse(share.Properties["TotalPhysicalMemory"].Value.ToString());
+                            nTemp = (Int64) (nTemp / 1000.0f / 1000.0f / 1000.0f);
+                            lstDisplayHardware.Items[10].SubItems[1].Text = nTemp.ToString() + "G"; // share.Properties["TotalPhysicalMemory"].Value.ToString();
                         }
                         break;
                     }
 
                     // Screen resolution
                     Rectangle resolution = Screen.PrimaryScreen.Bounds;
-                    lstDisplayHardware.Items[11].SubItems[1].Text = String.Format("{0} X {1}", resolution.Width, resolution.Height);
+                    lstDisplayHardware.Items[11].SubItems[1].Text = String.Format("{0}x{1}", resolution.Width, resolution.Height);
 
                     // Sleep After AC Power Value
                     type = 0;
@@ -318,9 +376,9 @@ namespace loading_screen
                     textBoxTurnoffAfter.Text = String.Format("0x{0:X8}", value);
 
                     // Current TimeZone
-                    String strOut = "";
+                    strOut = "";
 
-                    ProcessStartInfo cmdStartInfo = new ProcessStartInfo();
+                    cmdStartInfo = new ProcessStartInfo();
                     cmdStartInfo.FileName = @"cmd";
                     cmdStartInfo.RedirectStandardOutput = true;
                     cmdStartInfo.RedirectStandardError = true;
@@ -328,9 +386,9 @@ namespace loading_screen
                     cmdStartInfo.UseShellExecute = false;
                     cmdStartInfo.CreateNoWindow = true;
 
-                    Process cmdProcess = new Process();
+                    cmdProcess = new Process();
                     cmdProcess.StartInfo = cmdStartInfo;
-                    int nLineOut = 0;
+                    nLineOut = 0;
                     cmdProcess.OutputDataReceived += new DataReceivedEventHandler((sender1, e1) =>
                     {
                         if (e1.Data != null)
@@ -349,7 +407,7 @@ namespace loading_screen
                     cmdProcess.Start();
                     cmdProcess.BeginOutputReadLine();
 
-                    String strArg = String.Format("tzutil /g");
+                    strArg = String.Format("tzutil /g");
                     cmdProcess.StandardInput.WriteLine(strArg);     //Execute ping bing.com
                     cmdProcess.StandardInput.WriteLine("exit");                  //Execute exit.
 
