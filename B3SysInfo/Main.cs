@@ -74,8 +74,6 @@ namespace loading_screen
 
         private void ShowValue()
         {
-            Debug.WriteLine("Selected:{0}", tabControl1.SelectedIndex);
-
             int i;
 
             var activePolicyGuidPTR = IntPtr.Zero;
@@ -93,7 +91,6 @@ namespace loading_screen
                     for(i = 0; i < lstDisplayHardware.Items.Count; i++)
                     {
                         ListViewItem item = lstDisplayHardware.Items[i];
-                        Debug.WriteLine("{0}:{1}:{2}", i, item.SubItems[0].Text, item.SubItems[1].Text);
                     }
 
                     // Host Name
@@ -148,61 +145,66 @@ namespace loading_screen
 
                     // DNS Address
                     String strOut = "";
+                    ProcessStartInfo cmdStartInfo;
+                    Process cmdProcess;
+                    int nLineOut;
+                    String strArg;
 
-                    ProcessStartInfo cmdStartInfo = new ProcessStartInfo();
-                    cmdStartInfo.FileName = @"cmd";
-                    cmdStartInfo.RedirectStandardOutput = true;
-                    cmdStartInfo.RedirectStandardError = true;
-                    cmdStartInfo.RedirectStandardInput = true;
-                    cmdStartInfo.UseShellExecute = false;
-                    cmdStartInfo.CreateNoWindow = true;
+                    //String strOut = "";
+                    //ProcessStartInfo cmdStartInfo = new ProcessStartInfo();
+                    //cmdStartInfo.FileName = @"cmd";
+                    //cmdStartInfo.RedirectStandardOutput = true;
+                    //cmdStartInfo.RedirectStandardError = true;
+                    //cmdStartInfo.RedirectStandardInput = true;
+                    //cmdStartInfo.UseShellExecute = false;
+                    //cmdStartInfo.CreateNoWindow = true;
 
-                    Process cmdProcess = new Process();
-                    cmdProcess.StartInfo = cmdStartInfo;
-                    int nLineOut = 0;
-                    cmdProcess.OutputDataReceived += new DataReceivedEventHandler((sender1, e1) =>
-                    {
-                        if (e1.Data != null)
-                        {
-                            if (e1.Data.Equals("") == false)
-                            {
-                                nLineOut++;
-                                if (nLineOut > 3)
-                                {
-                                    strOut += e1.Data;
-                                    strOut += "\r\n";
-                                }
-                            }
-                        }
-                    });
-                    cmdProcess.Start();
-                    cmdProcess.BeginOutputReadLine();
+                    //Process cmdProcess = new Process();
+                    //cmdProcess.StartInfo = cmdStartInfo;
+                    //int nLineOut = 0;
+                    //cmdProcess.OutputDataReceived += new DataReceivedEventHandler((sender1, e1) =>
+                    //{
+                    //    if (e1.Data != null)
+                    //    {
+                    //        if (e1.Data.Equals("") == false)
+                    //        {
+                    //            nLineOut++;
+                    //            if (nLineOut > 3)
+                    //            {
+                    //                strOut += e1.Data;
+                    //                strOut += "\r\n";
+                    //            }
+                    //        }
+                    //    }
+                    //});
+                    //cmdProcess.Start();
+                    //cmdProcess.BeginOutputReadLine();
 
-                    String strArg = String.Format("nslookup host");
-                    cmdProcess.StandardInput.WriteLine(strArg);     //Execute ping bing.com
-                    cmdProcess.StandardInput.WriteLine("exit");                  //Execute exit.
+                    //String strArg = String.Format("nslookup host");
+                    //cmdProcess.StandardInput.WriteLine(strArg);     //Execute ping bing.com
+                    //cmdProcess.StandardInput.WriteLine("exit");                  //Execute exit.
 
-                    cmdProcess.WaitForExit();
-                    cmdProcess.Close();
+                    //cmdProcess.WaitForExit();
+                    //cmdProcess.Close();
 
-                    strOut = strOut.Trim();
-                    strOut = strOut.Remove(strOut.LastIndexOf(Environment.NewLine));
+                    //strOut = strOut.Trim();
+                    //strOut = strOut.Remove(strOut.LastIndexOf(Environment.NewLine));
 
-                    String []strarraytemp = strOut.Split(Environment.NewLine.ToCharArray());
+                    //String []strarraytemp = strOut.Split(Environment.NewLine.ToCharArray());
 
-                    String strServerNS = "", strAddressNS = "";
-                    for (i = 0; i < strarraytemp.Length; i++)
-                    {
-                        if (strarraytemp[i].Trim().Length <= 0)
-                            continue;
-                        if(strarraytemp[i].Split(":".ToCharArray())[0].Trim().StartsWith("Server"))
-                            strServerNS = strarraytemp[i].Split(":".ToCharArray())[1].Trim();
-                        if (strarraytemp[i].Split(":".ToCharArray())[0].Trim().StartsWith("Address"))
-                            strAddressNS = strarraytemp[i].Split(":".ToCharArray())[1].Trim();
-                    }
+                    //String strServerNS = "", strAddressNS = "";
+                    //for (i = 0; i < strarraytemp.Length; i++)
+                    //{
+                    //    if (strarraytemp[i].Trim().Length <= 0)
+                    //        continue;
+                    //    if(strarraytemp[i].Split(":".ToCharArray())[0].Trim().StartsWith("Server"))
+                    //        strServerNS = strarraytemp[i].Split(":".ToCharArray())[1].Trim();
+                    //    if (strarraytemp[i].Split(":".ToCharArray())[0].Trim().StartsWith("Address"))
+                    //        strAddressNS = strarraytemp[i].Split(":".ToCharArray())[1].Trim();
+                    //}
 
-                    lstDisplayHardware.Items[4].SubItems[1].Text = strAddressNS;
-                    lstDisplayHardware.Items[6].SubItems[1].Text = strServerNS; // NS Lookup
+                    //lstDisplayHardware.Items[4].SubItems[1].Text = strAddressNS;
+                    //lstDisplayHardware.Items[6].SubItems[1].Text = strServerNS; // NS Lookup
 
                     // Static
                     lstDisplayHardware.Items[5].SubItems[1].Text = "";
@@ -246,7 +248,6 @@ namespace loading_screen
                                             break;
                                     }
                                 }
-                                Debug.WriteLine("IP:" + prop.Value.ToString());
                                 if(strValue.Contains(lstDisplayHardware.Items[3].SubItems[1].Text))
                                 {
                                     lstDisplayHardware.Items[5].SubItems[1].Text = share.Properties["DHCPEnabled"].Value.ToString();
@@ -530,7 +531,6 @@ namespace loading_screen
                 {
                     if (e1.Data.Equals("") == false)
                     {
-                        Debug.WriteLine(e1.Data);
                         strOut += e1.Data;
                         strOut += "\r\n";
                     }
@@ -548,7 +548,6 @@ namespace loading_screen
             cmdProcess.WaitForExit();
             cmdProcess.Close();
 
-            Debug.WriteLine(strOut);
 
             Boolean bFlag = false;
             if(strOut.Contains("): LISTENING") == true)
@@ -646,34 +645,34 @@ namespace loading_screen
 
         private void btnGenerate_Click(object sender, EventArgs e)
         {
-            txtMailBody.Text = "";
+            //txtMailBody.Text = "";
 
-            int i, j;
-            ListViewItem item;
-            for(i = 0; i < lstDisplayHardware.Groups.Count; i++)
-            {
-                ListViewGroup grp = lstDisplayHardware.Groups[i];
-                txtMailBody.Text += String.Format("===== {0} =====", grp.Header);
-                for(j = 0; j < grp.Items.Count; j++)
-                {
-                    item = grp.Items[j];
-                    txtMailBody.Text += String.Format("\r\n{0}:{1}", item.Text, item.SubItems[1].Text);
-                }
-                txtMailBody.Text += "\r\n\r\n";
-            }
+            //int i, j;
+            //ListViewItem item;
+            //for(i = 0; i < lstDisplayHardware.Groups.Count; i++)
+            //{
+            //    ListViewGroup grp = lstDisplayHardware.Groups[i];
+            //    txtMailBody.Text += String.Format("===== {0} =====", grp.Header);
+            //    for(j = 0; j < grp.Items.Count; j++)
+            //    {
+            //        item = grp.Items[j];
+            //        txtMailBody.Text += String.Format("\r\n{0}:{1}", item.Text, item.SubItems[1].Text);
+            //    }
+            //    txtMailBody.Text += "\r\n\r\n";
+            //}
         }
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            String strResponse = EmailHelper.SendMessageViaMailKit(txtMailHost.Text,
-                int.Parse(txtMailPort.Text),
-                txtMailUserName.Text,
-                txtMailPwd.Text,
-                txtMailTo.Text,
-                txtMailUserName.Text,
-                txtMailTitle.Text,
-                txtMailBody.Text);
-            MessageBox.Show(strResponse);
+            //String strResponse = EmailHelper.SendMessageViaMailKit(txtMailHost.Text,
+            //    int.Parse(txtMailPort.Text),
+            //    txtMailUserName.Text,
+            //    txtMailPwd.Text,
+            //    txtMailTo.Text,
+            //    txtMailUserName.Text,
+            //    txtMailTitle.Text,
+            //    txtMailBody.Text);
+            //MessageBox.Show(strResponse);
         }
 
         private void btnChangeTimeZone_Click(object sender, EventArgs e)
@@ -683,7 +682,6 @@ namespace loading_screen
             String strArg = "/s \"" + cmbTimeZone.Items[cmbTimeZone.SelectedIndex].ToString() + "\"";
             Process.Start("tzutil", strArg).WaitForExit();
             lblCurrentTimeZone.Text = cmbTimeZone.Items[cmbTimeZone.SelectedIndex].ToString();
-            Debug.WriteLine(cmbTimeZone.Items[cmbTimeZone.SelectedIndex].ToString());
         }
 
         private void btnEnableScreenSaver_Click(object sender, EventArgs e)
@@ -734,6 +732,66 @@ namespace loading_screen
                 reg = localMachine.CreateSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon");
             }
             reg.SetValue("AutoAdminLogon", "0", RegistryValueKind.String);
+        }
+
+        private void MainForm_Activated(object sender, EventArgs e)
+        {
+            int i;
+            String strOut = "";
+            ProcessStartInfo cmdStartInfo = new ProcessStartInfo();
+            cmdStartInfo.FileName = @"cmd";
+            cmdStartInfo.RedirectStandardOutput = true;
+            cmdStartInfo.RedirectStandardError = true;
+            cmdStartInfo.RedirectStandardInput = true;
+            cmdStartInfo.UseShellExecute = false;
+            cmdStartInfo.CreateNoWindow = true;
+
+            Process cmdProcess = new Process();
+            cmdProcess.StartInfo = cmdStartInfo;
+            int nLineOut = 0;
+            cmdProcess.OutputDataReceived += new DataReceivedEventHandler((sender1, e1) =>
+            {
+                if (e1.Data != null)
+                {
+                    if (e1.Data.Equals("") == false)
+                    {
+                        nLineOut++;
+                        if (nLineOut > 3)
+                        {
+                            strOut += e1.Data;
+                            strOut += "\r\n";
+                        }
+                    }
+                }
+            });
+            cmdProcess.Start();
+            cmdProcess.BeginOutputReadLine();
+
+            String strArg = String.Format("nslookup host");
+            cmdProcess.StandardInput.WriteLine(strArg);     //Execute ping bing.com
+            cmdProcess.StandardInput.WriteLine("exit");                  //Execute exit.
+
+            cmdProcess.WaitForExit();
+            cmdProcess.Close();
+
+            strOut = strOut.Trim();
+            strOut = strOut.Remove(strOut.LastIndexOf(Environment.NewLine));
+
+            String[] strarraytemp = strOut.Split(Environment.NewLine.ToCharArray());
+
+            String strServerNS = "", strAddressNS = "";
+            for (i = 0; i < strarraytemp.Length; i++)
+            {
+                if (strarraytemp[i].Trim().Length <= 0)
+                    continue;
+                if (strarraytemp[i].Split(":".ToCharArray())[0].Trim().StartsWith("Server"))
+                    strServerNS = strarraytemp[i].Split(":".ToCharArray())[1].Trim();
+                if (strarraytemp[i].Split(":".ToCharArray())[0].Trim().StartsWith("Address"))
+                    strAddressNS = strarraytemp[i].Split(":".ToCharArray())[1].Trim();
+            }
+
+            lstDisplayHardware.Items[4].SubItems[1].Text = strAddressNS;
+            lstDisplayHardware.Items[6].SubItems[1].Text = strServerNS; // NS Lookup
         }
     }
 

@@ -54,7 +54,7 @@ namespace loading_screen
             if (curcolor < colors.Count - 1)
             {
                 this.BackColor = Bunifu.Framework.UI.BunifuColorTransition.getColorScale(loop, colors[curcolor], colors[curcolor + 1]);
-                if (loop < 100)
+                if (loop < 10)
                 {
                     loop++;
                 }
@@ -67,6 +67,7 @@ namespace loading_screen
             }
             else
             {
+                NextShow();
                 // MessageBox.Show("Complete.");
             }
         
